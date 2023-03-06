@@ -7,7 +7,7 @@ let difficultyEl = document.getElementById("difficulty");
 
 // creo l'array di bombe
 let bombArray = [];
-
+// Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali. FATTO
 
 
 // inizio dell'evento
@@ -31,15 +31,27 @@ btnEl.addEventListener('click', function() {
             squareEl.textContent = i;
             
             
-            // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.Bonus
+            // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
+            
+            // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+
+            
             
             squareEl.addEventListener('click', function() {
-                squareEl.classList.toggle('select');
-                console.log(i);
+
+                if(squareEl.innerText.includes(parseInt(bombArray))) {
+                    squareEl.classList.toggle('bomb');
+                } else {
+                    squareEl.classList.toggle('select');
+                    console.log(i);
+                    
+                }
+                
             })
             
+            
         }
-
+        
         let counter = 0;
         while(bombArray.length < 16) {
             let bomb = (Math.floor(Math.random() * (100 - 1)) + 1);
@@ -50,6 +62,7 @@ btnEl.addEventListener('click', function() {
             counter++;
         }
         console.log(bombArray);
+
         
         
     } else if (difficulty == 2) {
@@ -66,8 +79,15 @@ btnEl.addEventListener('click', function() {
             // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.Bonus
             
             squareEl.addEventListener('click', function() {
-                squareEl.classList.toggle('select');
-                console.log(i);
+
+                if(squareEl.innerText.includes(parseInt(bombArray))) {
+                    squareEl.classList.toggle('bomb');
+                } else {
+                    squareEl.classList.toggle('select');
+                    console.log(i);
+                    
+                }
+                
             })
             
         }
@@ -97,8 +117,15 @@ btnEl.addEventListener('click', function() {
             // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.Bonus
             
             squareEl.addEventListener('click', function() {
-                squareEl.classList.toggle('select');
-                console.log(i);
+
+                if(squareEl.innerText.includes(parseInt(bombArray))) {
+                    squareEl.classList.toggle('bomb');
+                } else {
+                    squareEl.classList.toggle('select');
+                    console.log(i);
+                    
+                }
+                
             })
             
         }
