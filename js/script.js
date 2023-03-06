@@ -8,10 +8,6 @@ let difficultyEl = document.getElementById("difficulty");
 // creo l'array di bombe
 let bombArray = [];
 
-for(let i = 1; i <= 16; i++) {
-    bombArray.push(randomNumberBetween(1,100));
-    console.log(bombArray);
-}
 
 
 // inizio dell'evento
@@ -23,6 +19,7 @@ btnEl.addEventListener('click', function() {
     let difficulty = difficultyEl.value;
 
     
+    
     if(difficulty == 1) {
         // - con difficoltà 1 => 100 caselle, con un numero compreso tra 1 e 100, divise in 10 caselle per 10 righe;
         for(let i = 1; i <= 100; i++) {
@@ -33,7 +30,7 @@ btnEl.addEventListener('click', function() {
             gridEl.append(squareEl);
             squareEl.textContent = i;
             
-
+            
             // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.Bonus
             
             squareEl.addEventListener('click', function() {
@@ -42,6 +39,17 @@ btnEl.addEventListener('click', function() {
             })
             
         }
+
+        let counter = 0;
+        while(bombArray.length < 16) {
+            let bomb = (Math.floor(Math.random() * (100 - 1)) + 1);
+            if(!bombArray.includes(bomb)) {
+                bombArray.push(bomb);
+            }
+
+            counter++;
+        }
+        console.log(bombArray);
         
         
     } else if (difficulty == 2) {
@@ -63,6 +71,17 @@ btnEl.addEventListener('click', function() {
             })
             
         }
+
+        let counter = 0;
+        while(bombArray.length < 16) {
+            let bomb = (Math.floor(Math.random() * (81 - 1)) + 1);
+            if(!bombArray.includes(bomb)) {
+                bombArray.push(bomb);
+            }
+
+            counter++;
+        }
+        console.log(bombArray);
         
     } else if (difficulty == 3) {
         // - con difficoltà 3 => 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe;
@@ -83,6 +102,17 @@ btnEl.addEventListener('click', function() {
             })
             
         }
+
+        let counter = 0;
+        while(bombArray.length < 16) {
+            let bomb = (Math.floor(Math.random() * (49 - 1)) + 1);
+            if(!bombArray.includes(bomb)) {
+                bombArray.push(bomb);
+            }
+
+            counter++;
+        }
+        console.log(bombArray);
     }
     
     // Ogni cella ha un numero progressivo, da 1 a 100.
@@ -91,13 +121,3 @@ btnEl.addEventListener('click', function() {
 
 // Bonus
 // Aggiungere una select accanto al bottone di generazione, che fornisca una scelta tra tre diversi livelli di difficoltà:
-
-function randomNumberBetween(min, max) {
-
-    // genero un numero random
-    let random = Math.floor(Math.random() * (max - min + 1) + min)
-  
-    // una volta che la nostra funzione viene eseguita, restituisci al suo posto questo valore
-    return random;
-  
-}
