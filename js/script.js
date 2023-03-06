@@ -4,6 +4,8 @@
 let btnEl = document.getElementById("btn");
 let gridEl = document.getElementById("container");
 let difficultyEl = document.getElementById("difficulty");
+document.getElementById("lose").style.display = "none";
+document.getElementById("win").style.display = "none";
 
 // creo l'array di bombe
 let bombArray = [];
@@ -33,21 +35,25 @@ btnEl.addEventListener('click', function() {
             
             // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
             
-            // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-
+            // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle. 
+            
             
             
             squareEl.addEventListener('click', function() {
-
+                
                 if(squareEl.innerText.includes(parseInt(bombArray))) {
                     squareEl.classList.toggle('bomb');
+                    document.getElementById("lose").style.display = "";
+
                 } else {
                     squareEl.classList.toggle('select');
                     console.log(i);
                     
-                }
+                } 
                 
             })
+
+            
             
             
         }
