@@ -15,7 +15,7 @@ gameOver = false;
 // inizio dell'evento
 btnEl.addEventListener('click', function() {
     // L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
-    
+    gameOver = false;
     gridEl.innerHTML = '';
     
     let difficulty = difficultyEl.value;
