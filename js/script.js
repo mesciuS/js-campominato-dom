@@ -10,7 +10,7 @@ let risultatoEl = document.getElementById("risultato");
 // creo l'array di bombe
 let bombArray = [];
 // Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali. FATTO
-
+gameOver = false;
 
 // inizio dell'evento
 btnEl.addEventListener('click', function() {
@@ -20,6 +20,7 @@ btnEl.addEventListener('click', function() {
     
     let difficulty = difficultyEl.value;
 
+    let victory = 0
     
     
     if(difficulty == 1) {
@@ -40,21 +41,22 @@ btnEl.addEventListener('click', function() {
             
             
             squareEl.addEventListener('click', function() {
+
+                if(gameOver) {
+                    return;
+                }
                 
                 if(bombArray.includes(parseInt(squareEl.textContent))) {
                     squareEl.classList.add('bomb');
                     squareEl.innerHTML = '💣'
                     document.getElementById("lose").style.display = "";
-                
+                    gameOver = true;
                 } else {
                     squareEl.classList.add('select');
                     console.log(i);
-
-                    let victory = 0
-                    if(squareEl.classList.contains('select')) {
-                        victory ++;
-                        risultatoEl.innerHTML = "Punti " + victory;
-                    }
+                    victory ++;
+                    risultatoEl.innerHTML = "Punti " + victory;
+                    
 
                     if(victory === (100 - bombArray.length)) {
                         document.getElementById("win").style.display = "";
@@ -95,21 +97,21 @@ btnEl.addEventListener('click', function() {
             
             squareEl.addEventListener('click', function() {
 
+                if(gameOver) {
+                    return;
+                }
+
                 if(bombArray.includes(parseInt(squareEl.textContent))) {
                     squareEl.classList.add('bomb');
                     squareEl.innerHTML = '💣'
                     document.getElementById("lose").style.display = "";
-
+                    gameOver = true;
                 } else {
                     squareEl.classList.add('select');
                     console.log(i);
+                    victory ++;
+                    risultatoEl.innerHTML = "Punti " + victory;
                     
-                    let victory = 0
-                    if(squareEl.classList.contains('select')) {
-                        victory ++;
-                        risultatoEl.innerHTML = "Punti " + victory;
-                    }
-
                     if(victory === (81 - bombArray.length)) {
                         document.getElementById("win").style.display = "";
                     }
@@ -145,19 +147,20 @@ btnEl.addEventListener('click', function() {
             
             squareEl.addEventListener('click', function() {
 
+                if(gameOver) {
+                    return;
+                }
+
                 if(bombArray.includes(parseInt(squareEl.textContent))) {
                     squareEl.classList.add('bomb');
                     squareEl.innerHTML = '💣'
                     document.getElementById("lose").style.display = "";
+                    gameOver = true;
                 } else {
                     squareEl.classList.add('select');
                     console.log(i);
-                    
-                    let victory = 0
-                    if(squareEl.classList.contains('select')) {
-                        victory ++;
-                        risultatoEl.innerHTML = "Punti " + victory;
-                    }
+                    victory ++;
+                    risultatoEl.innerHTML = "Punti " + victory;
 
                     if(victory === (49 - bombArray.length)) {
                         document.getElementById("win").style.display = "";
